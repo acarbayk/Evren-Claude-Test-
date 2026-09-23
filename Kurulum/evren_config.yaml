@@ -1,0 +1,15 @@
+# EVREN <-> Claude Code köprüsü (LiteLLM proxy ayarı)
+# Claude Code hangi model adını isterse istesin ("*"), istek EVREN'deki modele gider.
+# Modeli değiştirmek için sadece aşağıdaki "openai/glm-5.3" kısmını değiştir:
+#   openai/glm-5.3 | openai/deepseek-v4-flash | openai/qwen3.8-flash-next | openai/gemma-4-31b | openai/auto
+model_list:
+  - model_name: "*"
+    litellm_params:
+      model: openai/glm-5.3
+      api_base: https://evren-llmapi.ssyz.org.tr/v1
+      api_key: os.environ/EVREN_API_KEY
+
+litellm_settings:
+  drop_params: true
+  # EVREN'in /chat/completions ucunu kullan (/responses değil)
+  use_chat_completions_url_for_anthropic_messages: true

@@ -1,0 +1,45 @@
+EVREN + CLAUDE CODE KURULUMU (Windows)
+======================================
+
+Klasördeki dosyalar:
+  0_evren_test.py      Anahtarı test eder, EVREN kullanım şartlarını onaylatır
+  1_proxy_baslat.bat   Köprü sunucusunu (LiteLLM proxy) başlatır, port 4000
+  2_claude_evren.bat   Claude Code'u EVREN'e bağlı şekilde açar
+  evren_config.yaml    Hangi EVREN modelinin kullanılacağı (varsayılan glm-5.3)
+
+ADIM 0 - Eski denemeyi temizle (bir kez)
+  Dünkü CMD ve PowerShell pencerelerini kapat. Yeni bir CMD aç:
+    pip uninstall -y claude-code-proxy
+    pip install --upgrade "litellm[proxy]"
+
+ADIM 1 - Anahtarı kalıcı kaydet (bir kez)
+  Önce EVREN panelinden eski anahtarı iptal edip yeni anahtar oluştur. Sonra:
+    setx EVREN_API_KEY "evren_llm_YENI_ANAHTARIN"
+  setx sadece YENİ açılan pencerelerde geçerli olur. Bu CMD'yi kapat.
+
+ADIM 2 - Bağlantıyı test et (bir kez)
+  0_evren_test.py dosyasına çift tıkla (ya da: python 0_evren_test.py)
+  Şartları sorarsa E yaz. "EVREN bağlantısı çalışıyor" yazısını görmelisin.
+
+ADIM 3 - Her kullanımda
+  a) 1_proxy_baslat.bat'a çift tıkla. "Uvicorn running on http://0.0.0.0:4000"
+     yazısını bekle. Bu pencere açık kalmalı.
+  b) 2_claude_evren.bat'a çift tıkla. Claude Code açılır, cevapları EVREN verir.
+
+NORMAL GÖRÜLEN UYARI
+  '"glm-5.3" isn't described by this version's model catalog' uyarısı zararsız.
+  Claude Code bu modeli tanımadığı için bağlam sınırını 200K varsayıyor, o kadar.
+
+PRO HESABINA DÖNMEK
+  2_claude_evren.bat penceresini kapat, normal şekilde "claude" yaz. Ayarlar
+  sadece o pencereye özel, Pro hesabın etkilenmez.
+
+SORUN GİDERME
+  "python is not recognized"       -> Python PATH'te değil, "py" ile dene.
+  403 terms_not_accepted           -> ADIM 2'yi tekrar çalıştır, E yaz.
+  401                              -> Anahtar yanlış ya da setx sonrası yeni
+                                      pencere açılmadı.
+  Claude Code "Connection error"   -> 1_proxy_baslat.bat penceresi açık mı?
+  Araç (dosya okuma/yazma) hataları -> evren_config.yaml içinde modeli
+                                      deepseek-v4-flash ya da qwen3.8-flash-next
+                                      yapıp proxy'yi yeniden başlat.

@@ -1,0 +1,88 @@
+EVREN + CLAUDE CODE TEST SENARYOLARI
+====================================
+
+HAZIRLIK
+  1. 1_proxy_baslat.bat açık olsun (proxy penceresi).
+  2. Bu dosyayı test_projesi klasörünün DIŞINDA tut. Model okursa testlerin
+     cevabını öğrenir.
+  3. test_projesi klasöründeki claude_evren_burada.bat dosyasına çift tıkla.
+     Claude Code bu proje klasöründe açılır.
+  4. Başlamadan önce EVREN -> Kullanımım sayfasındaki toplam token ve
+     istek sayısını not al.
+  5. Her senaryodan önce Claude Code'a /clear yaz (önceki sohbet temizlenir,
+     ölçüm adil olur).
+  6. Claude Code dosya düzenleme ya da komut çalıştırma izni isterse
+     "Yes" de.
+
+HER SENARYO İÇİN NOT AL
+  - Süre: saatle ölç (başlangıç ve bitiş)
+  - Başarılı mı: tam / kısmi / başarısız
+  - Kaç kez izin istedi, hata verdi mi, takıldı mı
+  - Senaryo bitince Kullanımım sayfasındaki token artışı
+
+----------------------------------------------------------------------
+SENARYO 1 - Projeyi tanıma (dosya okuma)
+----------------------------------------------------------------------
+Yapıştır:
+  Bu projeyi incele. Ne işe yaradığını, dosya yapısını ve her dosyanın
+  görevini 5 madde halinde Türkçe anlat.
+
+Ekran görüntüsü: soru + cevabın tamamı.
+
+----------------------------------------------------------------------
+SENARYO 2 - Hata ayıklama (komut çalıştırma + düzenleme)
+----------------------------------------------------------------------
+Yapıştır:
+  "python -m unittest" komutuyla testleri çalıştır. Başarısız olan
+  testlerin sebebini bul, kodu düzelt ve testleri tekrar çalıştırarak
+  hepsinin geçtiğini göster.
+
+Ekran görüntüsü: ilk test çıktısı (FAILED), yaptığı düzeltmeler,
+son test çıktısı (OK).
+
+----------------------------------------------------------------------
+SENARYO 3 - Birden fazla dosyada değişiklik (refactor)
+----------------------------------------------------------------------
+Yapıştır:
+  Urun sınıfındaki "fyt" alanının adını "birim_fiyat" olarak değiştir.
+  Bu alanı kullanan bütün dosyaları güncelle, sonra testleri çalıştır.
+
+Ekran görüntüsü: hangi dosyaları değiştirdiğini gösteren kısım +
+test sonucu.
+
+----------------------------------------------------------------------
+SENARYO 4 - Yeni özellik yazma
+----------------------------------------------------------------------
+Yapıştır:
+  magaza klasörüne kampanya.py adında bir modül ekle. İçinde, bir
+  Sepet alıp "3 al 2 öde" kampanyasını uygulayan ve indirimli KDV
+  dahil toplamı döndüren bir fonksiyon olsun (her ürün için her 3
+  adetten 1'i bedava). tests/test_kampanya.py dosyasına en az 3 test
+  yaz ve tüm testleri çalıştır.
+
+Ekran görüntüsü: oluşturduğu kod + test sonucu.
+
+----------------------------------------------------------------------
+SENARYO 5 - Uzun dosya güvenlik incelemesi
+----------------------------------------------------------------------
+Yapıştır:
+  musteri_yonetimi.py dosyasını güvenlik açısından incele. Bulduğun
+  her sorunu satır numarası, risk seviyesi ve çözüm önerisiyle tablo
+  halinde ver.
+
+Ekran görüntüsü: tablonun tamamı.
+
+----------------------------------------------------------------------
+SENARYO 6 - Karşılaştırma (normal Claude Code ile)
+----------------------------------------------------------------------
+test_projesi klasörünün temiz bir kopyasını al (dosyaların ilk hali lazım).
+O klasörde NORMAL bir terminal aç, "claude" yaz (Pro hesabın).
+Senaryo 2 ve 5'i aynen tekrarla, süre ve sonucu not al.
+
+Ekran görüntüsü: iki cevabın aynı senaryo için yan yana görüntüsü.
+
+----------------------------------------------------------------------
+BİTİŞ
+----------------------------------------------------------------------
+EVREN -> Kullanımım sayfasının son hali (token, istek, model grafiği).
+Sonuçları ve notlarını gönder, puanlamayı ben yapacağım.
